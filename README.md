@@ -1,1 +1,43 @@
-<!-- 顶部：项目标题与核心徽章 --><!-- 使用 div align="center" 让顶部内容居中，这是GitHub README的常用技巧 --><div align="center">  <!-- 项目主标题 -->  # 🎓 Drupal 11 教程主题 (Drupal 11 Tutorial Theme)  <!-- 核心描述 -->  专为技术文档、编程教程和教育网站打造的 Drupal 11 主题  <!-- 徽章行 1: 包含许可证、Drupal版本、PHP版本 -->  [    ![](https://img.shields.io/badge/License-GPL_v3.0-blue.svg?style=for-the-badge&logo=gnu)  ](https://www.gnu.org/licenses/gpl-3.0)  [    ![](https://img.shields.io/badge/Drupal-11.0.x-brightgreen.svg?style=for-the-badge&logo=drupal)  ](https://www.drupal.org/project/drupal)  [    ![](https://img.shields.io/badge/PHP-8.1%2B-777BB4.svg?style=for-the-badge&logo=php)  ](https://www.php.net)  [    ![](https://img.shields.io/badge/Type-Sub_theme-orange.svg?style=for-the-badge)  ]  <!-- 徽章行 2: 仓库状态与统计 -->  ![](https://img.shields.io/github/stars/您的用户名/您的仓库名?style=social&label=Star)  ![](https://img.shields.io/github/forks/您的用户名/您的仓库名?style=social&label=Fork)  ![](https://img.shields.io/github/issues/您的用户名/您的仓库名?style=flat-square&color=red)  ![](https://img.shields.io/github/last-commit/您的用户名/您的仓库名?style=flat-square&color=green)</div><!-- 简介与目录分隔线 --><br/>### 📝 项目简介**Drupal 11 教程主题** 是一个轻量级、高性能且高度可定制的开源主题。它专为开发者撰写技术教程、API 文档或在线课程而设计。该主题深度集成了 Drupal 的核心功能，优化了代码高亮显示、章节导航和响应式阅读体验，致力于为您提供一个优雅的写作与发布平台。### ✨ 核心特性-   **🚀 Drupal 11 原生支持**：利用 Drupal 11 的最新特性，如现代化的前端工具链和改进的管理界面。-   **📚 专为阅读优化**：采用舒适的字体排版和行间距，减少读者的视觉疲劳。-   **🎨 Tailwind CSS / CSS 预处理器**：内置现代化的样式框架，方便快速修改主题外观。-   **📱 移动优先**：在手机、平板和桌面端均能提供完美的浏览体验。-   **🔍 SEO 友好**：结构化数据支持，帮助您的教程在搜索引擎中获得更好的排名。### 🛠️ 技术栈我们使用了现代化的 Web 技术栈来构建此主题：-   **CMS**：Drupal 11-   **前端**：Twig, SCSS, JavaScript (ES6+)-   **构建工具**：Composer, npm / Yarn-   **样式库**：[例如：Bootstrap 5 / Tailwind CSS / 或留空]### 🖼️ 截图预览> **提示**：请将 `preview.jpg` 替换为您实际的截图文件路径。建议使用宽屏截图以获得最佳视觉效果。<div align="center">  <img src="preview.jpg" alt="主题预览截图" width="90%">  <br>  <em>图：主题的桌面端与移动端响应式预览</em></div>### 🚀 快速开始按照以下步骤即可在您的 Drupal 11 站点上安装此主题。#### 1. 下载与放置将此仓库克隆或下载到您的 Drupal 安装目录下的 `themes/custom` 文件夹中。```bashcd /path/to/your/drupal/web/themes/customgit clone https://github.com/您的用户名/drupal11-tutorial-theme.git
+# 🚀 Drupal 11 主题与开发实战教程
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Drupal-11.x-blue?logo=drupal&logoColor=white" alt="Drupal 11">
+  <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg" alt="License GPL-3.0">
+  <img src="https://img.shields.io/badge/PHP-8.3+-777BB4?logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap&logoColor=white" alt="Bootstrap 5">
+</p>
+
+## 📝 项目简介
+这是一个专注于 **Drupal 11** 系统架构、主题定制及全栈开发的实战教程仓库。
+本项目涵盖了从环境搭建、Twig 模板引擎深度解析、Radix / Bootstrap 5 主题开发到 S3 云存储集成的完整路径。
+
+> [!TIP]
+> 旨在帮助开发者快速掌握 Drupal 11 的新特性，构建高性能、可扩展的现代化 CMS 系统。
+
+---
+
+## 🛠 技术栈 (Tech Stack)
+
+| 领域 | 技术图标 | 说明 |
+| :--- | :--- | :--- |
+| **核心** | ![Drupal](https://img.shields.io/badge/Drupal-11-0077C0?style=flat-square&logo=drupal) | CMS 系统底座 |
+| **后端** | ![PHP](https://img.shields.io/badge/PHP-8.3-777BB4?style=flat-square&logo=php) ![Composer](https://img.shields.io/badge/Composer-2.x-6C5146?style=flat-square&logo=composer) | 逻辑与包管理 |
+| **前端** | ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=flat-square&logo=bootstrap) ![Twig](https://img.shields.io/badge/Twig-3.x-426107?style=flat-square&logo=symfony) | 样式与模版引擎 |
+| **容器** | ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker) | 环境快速部署 |
+
+---
+
+## ✨ 核心内容
+* **Drupal 11 核心安装**: 基于 Composer 的最佳实践部署。
+* **Twig 模板精讲**: 深度修改 `.html.twig`，实现精细化 UI 控制。
+* **Bootstrap 5 主题化**: 结合 Radix 或自定义子主题开发。
+* **远程存储方案**: 集成 S3fs + Google Cloud Storage + Cloudflare。
+* **AI 辅助开发**: 如何利用 Cursor/Trae 提升 Drupal 开发效率。
+
+---
+
+## 🚀 快速开始
+
+### 1. 克隆项目
+```bash
+git clone [https://github.com/你的用户名/你的仓库名.git](https://github.com/你的用户名/你的仓库名.git)
