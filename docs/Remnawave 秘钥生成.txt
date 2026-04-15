@@ -32,3 +32,24 @@ Public key:  XyZ123...
     { "tag": "BLOCK", "protocol": "blackhole" }
   ]
 }
+
+
+系统层面优化，在服务器执行：
+
+# 开启 BBR 加速
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+sysctl -p
+
+# 验证 BBR 是否开启
+sysctl net.ipv4.tcp_congestion_control
+
+还可以再加一步缓冲区优化
+cat >> /etc/sysctl.conf << 'EOF'
+net.core.rmem_max=134217728
+net.core.wmem_max=134217728
+net.ipv4.tcp_rmem=4096 87380 67108864
+net.ipv4.tcp_wmem=4096 65536 67108864
+net.ipv4.tcp_mtu_probing=1
+EOF
+sysctl -p
