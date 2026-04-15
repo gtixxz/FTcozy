@@ -1,0 +1,34 @@
+问题在于 privateKey 还是占位符，需要真实的密钥。在节点服务器上生成：
+
+docker run --rm ghcr.io/xtls/xray-core:latest x25519
+
+会输出类似：
+Private key: aBcDeFg...
+Public key:  XyZ123...
+
+{
+  "log": { "loglevel": "warning" },
+  "inbounds": [{
+    "tag": "VLESS_TCP_REALITY",
+    "port": 443,
+    "protocol": "vless",
+    "settings": { "clients": [], "decryption": "none" },
+    "sniffing": { "enabled": true, "destOverride": ["http", "tls", "quic"] },
+    "streamSettings": {
+      "network": "raw",
+      "security": "reality",
+      "realitySettings": {
+        "show": false,
+        "xver": 0,
+        "target": "www.cloudflare.com:443",
+        "shortIds": ["a1b2c3d4"],
+        "privateKey": "刚才生成的Private key",
+        "serverNames": ["www.cloudflare.com"]
+      }
+    }
+  }],
+  "outbounds": [
+    { "tag": "DIRECT", "protocol": "freedom" },
+    { "tag": "BLOCK", "protocol": "blackhole" }
+  ]
+}
