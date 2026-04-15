@@ -1,0 +1,353 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "dns": {
+    "servers": [
+      "1.1.1.1",
+      "8.8.8.8",
+      "localhost"
+    ],
+    "queryStrategy": "UseIPv4"
+  },
+  "inbounds": [
+    {
+      "tag": "VLESS_TCP_REALITY",
+      "port": 8443,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
+          "domainStrategy": "UseIPv4",
+          "tcpKeepAliveIdle": 300
+        },
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "xver": 0,
+          "target": "itunes.apple.com:443",
+          "shortIds": [
+            "a1b2c3d4e5f6a1b2"
+          ],
+          "privateKey": "2HmZvQjQgHsFAR4rmG3T2JTYteAxTLjhfuWYD8g2WlY",
+          "serverNames": [
+            "itunes.apple.com"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "VLESS_GRPC_REALITY",
+      "port": 8444,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 300
+        },
+        "security": "reality",
+        "grpcSettings": {
+          "serviceName": "grpc"
+        },
+        "realitySettings": {
+          "show": false,
+          "xver": 0,
+          "target": "itunes.apple.com:443",
+          "shortIds": [
+            "a1b2c3d4e5f6a1b2"
+          ],
+          "privateKey": "2HmZvQjQgHsFAR4rmG3T2JTYteAxTLjhfuWYD8g2WlY",
+          "serverNames": [
+            "itunes.apple.com"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "VLESS_XHTTP_REALITY",
+      "port": 8445,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 300
+        },
+        "security": "reality",
+        "xhttpSettings": {
+          "mode": "auto",
+          "path": "/xhttp"
+        },
+        "realitySettings": {
+          "show": false,
+          "xver": 0,
+          "target": "itunes.apple.com:443",
+          "shortIds": [
+            "a1b2c3d4e5f6a1b2"
+          ],
+          "privateKey": "2HmZvQjQgHsFAR4rmG3T2JTYteAxTLjhfuWYD8g2WlY",
+          "serverNames": [
+            "itunes.apple.com"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "VLESS_WS_TLS",
+      "port": 2083,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 300
+        },
+        "security": "tls",
+        "wsSettings": {
+          "path": "/vless-ws"
+        },
+        "tlsSettings": {
+          "alpn": [
+            "http/1.1"
+          ],
+          "certificates": [
+            {
+              "keyFile": "/var/lib/remnawave/configs/xray/ssl/privkey.key",
+              "certificateFile": "/var/lib/remnawave/configs/xray/ssl/fullchain.pem"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "VLESS_GRPC_TLS",
+      "port": 2087,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 300
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "alpn": [
+            "http/1.1"
+          ],
+          "certificates": [
+            {
+              "keyFile": "/var/lib/remnawave/configs/xray/ssl/privkey.key",
+              "certificateFile": "/var/lib/remnawave/configs/xray/ssl/fullchain.pem"
+            }
+          ]
+        },
+        "grpcSettings": {
+          "serviceName": "vless-grpc"
+        }
+      }
+    },
+    {
+      "tag": "VLESS_XHTTP_TLS",
+      "port": 2088,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 300
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "alpn": [
+            "http/1.1"
+          ],
+          "certificates": [
+            {
+              "keyFile": "/var/lib/remnawave/configs/xray/ssl/privkey.key",
+              "certificateFile": "/var/lib/remnawave/configs/xray/ssl/fullchain.pem"
+            }
+          ]
+        },
+        "xhttpSettings": {
+          "mode": "auto",
+          "path": "/vless-xhttp"
+        }
+      }
+    },
+    {
+      "tag": "TROJAN_TCP_TLS",
+      "port": 2096,
+      "protocol": "trojan",
+      "settings": {
+        "clients": []
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 300
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "alpn": [
+            "http/1.1"
+          ],
+          "certificates": [
+            {
+              "keyFile": "/var/lib/remnawave/configs/xray/ssl/privkey.key",
+              "certificateFile": "/var/lib/remnawave/configs/xray/ssl/fullchain.pem"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "TROJAN_WS_TLS",
+      "port": 2095,
+      "protocol": "trojan",
+      "settings": {
+        "clients": []
+      },
+      "streamSettings": {
+        "network": "ws",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 300
+        },
+        "security": "tls",
+        "wsSettings": {
+          "path": "/trojan-ws"
+        },
+        "tlsSettings": {
+          "alpn": [
+            "http/1.1"
+          ],
+          "certificates": [
+            {
+              "keyFile": "/var/lib/remnawave/configs/xray/ssl/privkey.key",
+              "certificateFile": "/var/lib/remnawave/configs/xray/ssl/fullchain.pem"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "TROJAN_GRPC_TLS",
+      "port": 2094,
+      "protocol": "trojan",
+      "settings": {
+        "clients": []
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 300
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "alpn": [
+            "http/1.1"
+          ],
+          "certificates": [
+            {
+              "keyFile": "/var/lib/remnawave/configs/xray/ssl/privkey.key",
+              "certificateFile": "/var/lib/remnawave/configs/xray/ssl/fullchain.pem"
+            }
+          ]
+        },
+        "grpcSettings": {
+          "serviceName": "trojan-grpc"
+        }
+      }
+    },
+    {
+      "tag": "SHADOWSOCKS",
+      "port": 51888,
+      "protocol": "shadowsocks",
+      "settings": {
+        "clients": [],
+        "network": "tcp,udp"
+      }
+    },
+    {
+      "tag": "SS2022",
+      "port": 51889,
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "2022-blake3-aes-256-gcm",
+        "clients": [],
+        "network": "tcp,udp",
+        "password": "uVYkKasJzXxeOmOjvvYWMsEftJpKJG7wtikgkv+tPf4="
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "DIRECT",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIPv4"
+      }
+    },
+    {
+      "tag": "BLOCK",
+      "protocol": "blackhole"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "ip": [
+          "geoip:private"
+        ],
+        "type": "field",
+        "outboundTag": "BLOCK"
+      }
+    ],
+    "domainStrategy": "IPIfNonMatch"
+  }
+}
