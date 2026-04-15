@@ -1,0 +1,256 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "dns": {
+    "servers": [
+      "https://1.1.1.1/dns-query",
+      "https://8.8.8.8/dns-query"
+    ]
+  },
+  "inbounds": [
+    {
+      "tag": "VLESS_TCP_REALITY",
+      "port": 8443,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      },
+      "streamSettings": {
+        "network": "raw",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true,
+          "domainStrategy": "UseIPv4"
+        },
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "xver": 0,
+          "target": "itunes.apple.com:443",
+          "shortIds": [
+            "a1b2c3d4e5f6a1b2"
+          ],
+          "privateKey": "2HmZvQjQgHsFAR4rmG3T2JTYteAxTLjhfuWYD8g2WlY",
+          "serverNames": [
+            "itunes.apple.com"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "VLESS_GRPC_REALITY",
+      "port": 8444,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true
+        },
+        "security": "reality",
+        "grpcSettings": {
+          "serviceName": "grpc"
+        },
+        "realitySettings": {
+          "show": false,
+          "xver": 0,
+          "target": "itunes.apple.com:443",
+          "shortIds": [
+            "a1b2c3d4e5f6a1b2"
+          ],
+          "privateKey": "2HmZvQjQgHsFAR4rmG3T2JTYteAxTLjhfuWYD8g2WlY",
+          "serverNames": [
+            "itunes.apple.com"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "VLESS_XHTTP_REALITY",
+      "port": 8445,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "sockopt": {
+          "tcpNoDelay": true,
+          "tcpFastOpen": true
+        },
+        "security": "reality",
+        "xhttpSettings": {
+          "mode": "auto",
+          "path": "/xhttp"
+        },
+        "realitySettings": {
+          "show": false,
+          "xver": 0,
+          "target": "itunes.apple.com:443",
+          "shortIds": [
+            "a1b2c3d4e5f6a1b2"
+          ],
+          "privateKey": "2HmZvQjQgHsFAR4rmG3T2JTYteAxTLjhfuWYD8g2WlY",
+          "serverNames": [
+            "itunes.apple.com"
+          ]
+        }
+      }
+    },
+    {
+      "tag": "VLESS_WS_TLS",
+      "port": 2083,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "wsSettings": {
+          "path": "/vless-ws"
+        },
+        "tlsSettings": {
+          "certificates": [
+            {
+              "keyFile": "/var/lib/remnawave/configs/xray/ssl/privkey.key",
+              "certificateFile": "/var/lib/remnawave/configs/xray/ssl/fullchain.pem"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "PROXY_AI",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIPv4"
+      }
+    },
+    {
+      "tag": "PROXY_SOCIAL",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIPv4"
+      }
+    },
+    {
+      "tag": "PROXY_GAME",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIPv4"
+      }
+    },
+    {
+      "tag": "DIRECT",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIPv4"
+      }
+    },
+    {
+      "tag": "BLOCK",
+      "protocol": "blackhole"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "geosite:category-ads-all"
+        ],
+        "outboundTag": "BLOCK"
+      },
+      {
+        "ip": [
+          "geoip:private"
+        ],
+        "type": "field",
+        "outboundTag": "DIRECT"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "geosite:cn"
+        ],
+        "outboundTag": "DIRECT"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "domain:openai.com",
+          "domain:chat.openai.com",
+          "domain:anthropic.com",
+          "domain:claude.ai"
+        ],
+        "outboundTag": "PROXY_AI"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "domain:telegram.org",
+          "domain:t.me",
+          "domain:tdesktop.com"
+        ],
+        "outboundTag": "PROXY_SOCIAL"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "domain:tiktok.com",
+          "domain:byteoversea.com"
+        ],
+        "outboundTag": "PROXY_SOCIAL"
+      },
+      {
+        "port": "10000-65000",
+        "type": "field",
+        "network": "udp",
+        "outboundTag": "PROXY_GAME"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "geosite:geolocation-!cn"
+        ],
+        "outboundTag": "PROXY_SOCIAL"
+      }
+    ],
+    "domainStrategy": "IPIfNonMatch"
+  }
+}
